@@ -23,29 +23,115 @@ const catalogue = [
 ];
 
 function checkBook(title) {
+  let result = false;
   if (!title) throw new Error("Please provide a title");
-  // Your code here
+  for (let i = 0; i < catalogue.length; i++){
+    let book = title.toLowerCase()
+    let cat = catalogue[i].toLowerCase()
+    if (cat.includes(book)){
+      result = true;
+    }
+  }
+  return result;
 }
+
+//WHILE LOOP
+// function checkBook(title) {
+//   let result = false;
+//   if (!title) throw new Error("Please provide a title");
+//   let i = 0;
+//   while(i < catalogue.length){
+    
+//     let book = title.toLowerCase()
+//     let cat = catalogue[i].toLowerCase()
+//     i++
+//     if (cat.includes(book)){
+//       result = true;
+//     }
+//   }
+//   return result;
+// }
 
 function countBooksByKeyword(keyword) {
   if (!keyword) throw new Error("Please provide a keyword");
-  // Your code here
+  let count = 0;
+  for (let i = 0; i < catalogue.length; i++){
+let book = keyword.toLowerCase()
+    let cat = catalogue[i].toLowerCase()
+    if (cat.includes(book)){
+      count++;
+    }
+   
+  }
+  return count;
 }
 
 function getBooksByAuthor(author) {
   if (!author) throw new Error("Please provide an author");
-  // Your code here
+  let count = [];
+ 
+  for (let i = 0; i < catalogue.length; i++){
+    
+    if (catalogue[i].includes(author)){
+      let cut = catalogue[i].indexOf(" by")
+      count.push(catalogue[i].slice(0,cut));
+    }
+   
+  }
+  return count;
 }
 
 function getStockCount(title) {
   if (!title) throw new Error("Please provide a title");
-  // Your code here
+  let count = 0;
+  for (let i = 0; i < catalogue.length; i++){
+    if(catalogue[i].includes(!title)){
+      count = 0;
+    }else if(catalogue[i].includes(title)){
+      let num = catalogue[i].slice(-3,-1);
+     count = Number(num)? num : num[1];
+    }
+    
+  }
+  return Number(count)
 }
+
 
 function stockReview(title) {
   if (!title) throw new Error("Please provide a title");
-  // Your code here
+  for (let i = 0; i < catalogue.length; i++){
+    if(getStockCount(title) === 0){
+      return "Not in Stock";
+    }else if (getStockCount(title) > 0 && getStockCount(title) <= 5){
+      return "Low Stock";
+    }else if (getStockCount(title) >= 5 && getStockCount(title) <= 10){
+      return "Medium Stock";
+    }else if (getStockCount(title) > 10){
+      return "High Stock";
+    }
+  }
 }
+//SWITCH STATEMENT
+// function stockReview(title) {
+//   const stock = getStockCount(title);
+//   let result = "";
+// switch (true) {
+//   case stock === 0:
+//       result = 'Not in Stock';
+//       break;
+//   case stock > 0 && stock <= 5:
+//       result = 'Low Stock';
+//       break;
+//   case stock >= 5 && stock <= 10:
+//       result = 'Medium Stock';
+//       break;
+//   case stock > 10:
+//       result = 'High Stock'
+//       break;
+// }
+// return result;
+// }
+
 
 module.exports = {
   checkBook,
