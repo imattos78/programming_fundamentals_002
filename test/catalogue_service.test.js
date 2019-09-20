@@ -21,7 +21,7 @@ describe("catalogueService", () => {
       expect(catalogueService.checkBook("great expectations")).toBe(true);
     });
     test("returns true when the title is in Lower Case", () => {
-      expect(catalogueService.checkBook("Expectations")).toBe(true);
+      expect(catalogueService.checkBook("expectations")).toBe(true);
     });
   });
   describe("catalogueService.countBooksByKeyword", () => {

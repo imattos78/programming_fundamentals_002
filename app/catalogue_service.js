@@ -21,19 +21,26 @@ const catalogue = [
   "Why Be Happy When You Could Be Normal? by Jeanette Winterson (19)",
   "The Origin of Species by Charles Darwin (50)"
 ];
+//FIRST SOLUTION 
+// function checkBook(title) {
+//   let result = false;
+//   if (!title) throw new Error("Please provide a title");
+//   for (let i = 0; i < catalogue.length; i++){
+//     let book = title.toLowerCase()
+//     let cat = catalogue[i].toLowerCase()
+//     if (cat.includes(book)){
+//       result = true;
+//     }
+//   }
+//   return result;
+// }
 
-function checkBook(title) {
-  let result = false;
+//ARROW AND HIGH ORDER FUNCTION
+let checkBook = title =>{
   if (!title) throw new Error("Please provide a title");
-  for (let i = 0; i < catalogue.length; i++){
-    let book = title.toLowerCase()
-    let cat = catalogue[i].toLowerCase()
-    if (cat.includes(book)){
-      result = true;
-    }
+  let found = catalogue.some(word => word.toLowerCase().includes(title.toLowerCase())? true : false); 
+  return found
   }
-  return result;
-}
 
 //WHILE LOOP
 // function checkBook(title) {
